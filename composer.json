@@ -60,9 +60,13 @@
         "laravel-enso/tutorialmanager": "2.2.*",
         "laravel-enso/versioning": "1.1.*",
         "laravel-enso/vuecomponents": "2.5.*",
-        "laravel-enso/vuedatatable": "1.7.*",
+        "laravel-enso/vuedatatable": "1.7.9.1",
         "laravel/horizon": "^1.3"
     },
+    "repositories": [{
+        "type": "git",
+        "url": "https://github.com/mjhallll/VueDatatable"
+        }],
     "autoload": {
         "psr-4": {
             "LaravelEnso\\Core\\": "src/"
