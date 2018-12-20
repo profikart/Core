@@ -12,19 +12,29 @@ use LaravelEnso\Core\app\Http\Requests\ValidateUserRequest;
 
 class UserController extends Controller
 {
-    use AuthorizesRequests;
-
-    public function create(Person $person, UserForm $form)
+    use AuthorizesRequests; 
+ 
+    public function create(UserForm $form)
     {
-        return ['form' => $form->create($person)];
+        return ['form' => $form->create()];
     }
 
     public function store(ValidateUserRequest $request)
     {
-        $user = new User($request->validated());
+        $personFields= ['title','name','appellative','email','uid','phone','birthday','gender','obs'];
+        $personData =[];
+        $data=$request->all();
+        foreach($personFields as $key => $v){
+            $personData=array_merge($personData,[$v =>$data[$v]]);
+            unset($data[$v]);
+        }
+        $data= array_merge($data,['email'=>$request->all()['email']]);
+        $person = Person::create($personData);
+        // dump($personData,$data,$request->validated());
+        $data['person_id'] = $person->id;
+        $user = new User($data);
 
         $this->authorize('handle', $user);
-
         $user->save();
 
         $user->sendResetPasswordEmail();
@@ -34,6 +44,7 @@ class UserController extends Controller
             'redirect' => 'administration.users.edit',
             'param' => ['user' => $user->id],
         ];
+
     }
 
     public function show(User $user)
@@ -60,8 +71,7 @@ class UserController extends Controller
         if ($request->get('role_id') !== $user->role_id) {
             $this->authorize('change-role', $user);
         }
-
-        $user->update($request->validated());
+        $user->update($request->all());
 
         return ['message' => __('The user was successfully updated')];
     }

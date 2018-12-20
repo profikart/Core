@@ -13,18 +13,20 @@ class UserForm
     private $form;
 
     public function __construct()
-    {
+    { 
         $this->form = new Form(self::TemplatePath);
     }
 
-    public function create($person)
+    public function create()
     {
-        $this->setCommonValues($person);
+        // $this->setCommonValues($person);
 
-        return $this->form
-            ->value('email', $person->email)
-            ->value('person_id', $person->id)
-            ->create();
+        // return $this->form
+        //     ->value('email', $person->email)
+        //     ->value('person_id', $person->id)
+        //     ->create();
+        return $this->form->create();
+
     }
 
     public function edit(User $user)

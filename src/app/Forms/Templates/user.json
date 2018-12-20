@@ -1,64 +1,98 @@
 {
     "routePrefix": "administration.users",
-    "sections": [{
-        "columns": "custom",
-        "divider": true,
-        "title": "Personal Info",
-        "fields": [{
-            "label": "",
-            "name": "person_id",
-            "value": null,
-            "column": 2,
-            "meta": {
-                "hidden": true,
-                "type": "input",
-                "content": "text"
-            }
+    "sections": [
+        {
+        
+            "columns": "custom",
+            "fields": [{
+                "label": "Title",
+                "name": "title",
+                "value": null,
+                "column": 2,
+                "meta": {
+                    "type": "select",
+                    "options": "LaravelEnso\\People\\app\\Enums\\Titles"
+                }
+            }, {
+                "label": "Name",
+                "name": "name",
+                "value": null,
+                "column": 6,
+                "meta": {
+                    "type": "input",
+                    "content": "text"
+                }
+            }, {
+                "label": "Appellative",
+                "name": "appellative",
+                "value": null,
+                "column": 4,
+                "meta": {
+                    "type": "input",
+                    "content": "text"
+                }
+            }]
+        }, {
+            "columns": 2,
+            "fields": [{
+                "label": "Email",
+                "name": "email",
+                "value": null,
+                "meta": {
+                    "type": "input",
+                    "content": "email"
+                }
+            }, {
+                "label": "Personal Identifier",
+                "name": "uid",
+                "value": null,
+                "meta": {
+                    "type": "input",
+                    "content": "text"
+                }
+            }]
         },{
-            "label": "Title",
-            "name": "title",
-            "value": null,
-            "column": 2,
-            "meta": {
-                "readonly": true,
-                "type": "select",
-                "options": "LaravelEnso\\People\\app\\Enums\\Titles"
-            }
+            "columns": 3,
+            "fields": [{
+                "label": "Phone Number",
+                "name": "phone",
+                "value": null,
+                "meta": {
+                    "type": "input",
+                    "content": "text"
+                }
+            }, {
+                "label": "Birthday",
+                "name": "birthday",
+                "value": null,
+                "meta": {
+                    "type": "datepicker"
+                }
+            }, {
+                "label": "Gender",
+                "name": "gender",
+                "value": null,
+                "meta": {
+                    "type": "select",
+                    "options": "LaravelEnso\\People\\app\\Enums\\Genders"
+                }
+            }]
         }, {
-            "label": "Name",
-            "name": "name",
-            "value": null,
-            "column": 6,
-            "meta": {
-                "readonly": true,
-                "type": "input",
-                "content": "text"
-            }
+            "columns": 1,
+            "fields": [{
+                "label": "Notes",
+                "name": "obs",
+                "value": null,
+                "meta": {
+                    "type": "textarea",
+                    "rows": 3
+                }
+            }]
         }, {
-            "label": "Appellative",
-            "name": "appellative",
-            "value": null,
-            "column": 4,
-            "meta": {
-                "readonly": true,
-                "type": "input",
-                "content": "text"
-            }
-        }]
-    }, {
         "columns": "custom",
         "divider": true,
         "title": "User Info",
         "fields": [{
-            "label": "Email",
-            "name": "email",
-            "value": null,
-            "column": 6,
-            "meta": {
-                "type": "input",
-                "content": "email"
-            }
-        }, {
             "label": "Group",
             "name": "group_id",
             "value": null,
@@ -126,5 +160,6 @@
                 "content": "text"
             }
         } ]
-    }]
+    }
+]
     }
