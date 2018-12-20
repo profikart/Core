@@ -18,7 +18,25 @@
                 "type": "input",
                 "content": "text"
             }
-        }, {
+        },{
+            "label": "structure id",
+            "name": "cs_id",
+            "value": null,
+            "meta": {
+                "type": "input",
+                "content": "text"
+            }
+        }, 
+        {
+            "label": "show for",
+            "name": "display_to",
+            "value": null,
+            "meta": {
+                "type": "input",
+                "content": "text"
+            }
+        },
+        {
             "label": "Roles",
             "name": "roles",
             "value": [],

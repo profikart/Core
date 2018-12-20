@@ -14,7 +14,7 @@
                 "type": "input",
                 "content": "text"
             }
-        }, {
+        },{
             "label": "Title",
             "name": "title",
             "value": null,
@@ -113,6 +113,18 @@
                 "type": "input",
                 "content": "checkbox"
             }
-        }]
+        }
+        ,
+        
+        {
+            "label": "Company Structure Reference id",
+            "name": "csr_id",
+            "value": null,
+            "column": 3,
+            "meta": {
+                "type": "input",
+                "content": "text"
+            }
+        } ]
     }]
     }

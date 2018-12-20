@@ -24,6 +24,8 @@ class ValidateUserGroupRequest extends FormRequest
             'name' => ['required', $nameUnique],
             'description' => 'nullable',
             'roles' => 'array',
+            'cs_id'=>'nullable',
+            'display_to'=>'nullable'
         ];
     }
 }

@@ -16,7 +16,9 @@ class UserGroupController extends Controller
 
     public function store(ValidateUserGroupRequest $request, UserGroup $userGroup)
     {
-        $userGroup = $userGroup->storeWithRoles($request->validated());
+        $data = $request->validated();
+        $data['display_to'] = json_encode(explode(',',$data['display_to']));
+        $userGroup = $userGroup->storeWithRoles($data);
 
         return [
             'message' => __('The user group was successfully created'),
@@ -27,12 +29,16 @@ class UserGroupController extends Controller
 
     public function edit(UserGroup $userGroup, UserGroupForm $form)
     {
+        $userGroup->display_to = implode(',',json_decode($userGroup->display_to,true));
         return ['form' => $form->edit($userGroup)];
     }
 
     public function update(ValidateUserGroupRequest $request, UserGroup $userGroup)
     {
-        $userGroup->updateWithRoles($request->validated());
+        $data = $request->validated();
+        $data['display_to'] = json_encode(explode(',',$data['display_to']));
+
+        $userGroup->updateWithRoles($data);
 
         return ['message' => __('The user group was successfully updated')];
     }

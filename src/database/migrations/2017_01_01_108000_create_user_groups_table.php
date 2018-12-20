@@ -12,7 +12,8 @@ class CreateUserGroupsTable extends Migration
 
             $table->string('name')->unique();
             $table->string('description')->nullable();
-
+            $table->integer('cs_id');
+            $table->json('display_to');
             $table->timestamps();
         });
     }
