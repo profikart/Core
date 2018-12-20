@@ -26,11 +26,19 @@ class User extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
     protected $fillable = [
-        'person_id', 'group_id', 'role_id', 'email', 'is_active',
+        'person_id',
+        'group_id',
+        'role_id',
+        'email',
+        'is_active',
+        'csr_id', 
     ];
 
     protected $casts = [
-        'is_active' => 'boolean', 'person_id' => 'int', 'owner_id' => 'int', 'role_id' => 'int',
+        'is_active' => 'boolean', 
+        'person_id' => 'int',
+        'owner_id' => 'int',
+        'role_id' => 'int',
     ];
 
     protected $loggableLabel = 'person.name';
