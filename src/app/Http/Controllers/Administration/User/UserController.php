@@ -13,7 +13,7 @@ use LaravelEnso\Core\app\Http\Requests\ValidateUserRequest;
 class UserController extends Controller
 {
     use AuthorizesRequests; 
- 
+    protected $personFields= ['title','name','appellative','email','uid','phone','birthday','gender','obs'];
     public function create(UserForm $form)
     {
         return ['form' => $form->create()];
@@ -21,16 +21,14 @@ class UserController extends Controller
 
     public function store(ValidateUserRequest $request)
     {
-        $personFields= ['title','name','appellative','email','uid','phone','birthday','gender','obs'];
         $personData =[];
         $data=$request->all();
-        foreach($personFields as $key => $v){
+        foreach($this->personFields as $key => $v){
             $personData=array_merge($personData,[$v =>$data[$v]]);
             unset($data[$v]);
         }
         $data= array_merge($data,['email'=>$request->all()['email']]);
         $person = Person::create($personData);
-        // dump($personData,$data,$request->validated());
         $data['person_id'] = $person->id;
         $user = new User($data);
 
@@ -61,8 +59,17 @@ class UserController extends Controller
 
     public function update(ValidateUserRequest $request, User $user)
     {
+        $personData =[];
+        $data=$request->all();
+        foreach($this->personFields as $key => $v){
+            $personData=array_merge($personData,[$v =>$data[$v]]);
+            unset($data[$v]);
+        }
+        $data= array_merge($data,['email'=>$request->all()['email']]);
+        
+        Person::where('id',$user->person_id)->update($personData);
         $this->authorize('handle', $user);
-
+ 
         if ($request->filled('password')) {
             $this->authorize('change-password', $user);
             $user->password = bcrypt($request->get('password'));

@@ -28,6 +28,10 @@ class CreateUsersTable extends Migration
 
             $table->integer('updated_by')->unsigned()->index()->nullable();
             $table->foreign('updated_by')->references('id')->on('users');
+            $table->integer('csr_id')->unsigned()->index()->nullable();
+            $table->foreign('csr_id')->references('id')->on('company_structure_references');
+            $table->integer('ot_id')->unsigned()->nullable();
+
 
             $table->rememberToken();
 

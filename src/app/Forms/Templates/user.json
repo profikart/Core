@@ -116,6 +116,31 @@
                 "options": [],
                 "source": "system.roles.options"
             }
+        },{
+            "label": "structure",
+            "name": "ot_id",
+            "value": null,
+            "column": 3,
+            "meta": {
+                "custom": true,
+                "type": "select",
+                "multiple": false,
+                "options": [],
+                "source": "administration.users.csOptions"
+            }
+        },
+        {
+            "label": "instance of structure ",
+            "name": "csr_id",
+            "value": null,
+            "column": 3,
+            "meta": {
+                "custom": true,
+                "type": "select",
+                "multiple": false,
+                "options": [],
+                "source": "administration.users.csrOptions"
+            }
         }]
     }, {
         "columns": 2,
@@ -148,18 +173,8 @@
                 "content": "checkbox"
             }
         }
-        ,
-        
-        {
-            "label": "Company Structure Reference id",
-            "name": "csr_id",
-            "value": null,
-            "column": 3,
-            "meta": {
-                "type": "input",
-                "content": "text"
-            }
-        } ]
+      
+    ]
     }
 ]
     }

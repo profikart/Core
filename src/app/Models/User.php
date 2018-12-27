@@ -31,6 +31,7 @@ class User extends Authenticatable
         'role_id',
         'email',
         'is_active',
+        'ot_id',
         'csr_id', 
     ];
 

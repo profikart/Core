@@ -52,12 +52,12 @@ Route::namespace('LaravelEnso\Core\app\Http\Controllers')
                             });
 
                         Route::resource('userGroups', 'UserGroup\UserGroupController', ['except' => ['show', 'index']]);
-
-                        Route::namespace('User')
+ 
+                        Route::namespace('User') 
                             ->prefix('users')->as('users.')
                             ->group(function () {
-                                Route::get('create/{person}', 'UserController@create')
-                                    ->name('create');
+                                Route::get('create', 'UserController@create') 
+                                    ->name('create'); 
 
                                 Route::get('initTable', 'UserTableController@init')
                                     ->name('initTable');
@@ -68,6 +68,10 @@ Route::namespace('LaravelEnso\Core\app\Http\Controllers')
 
                                 Route::get('options', 'UserSelectController@options')
                                     ->name('options');
+                                Route::get('csOptions','UserSelectController@csOptions')
+                                    ->name('csOptions');
+                                Route::get('csrOptions','UserSelectController@csrOptions')
+                                    ->name('csrOptions');
                             });
 
                         Route::resource('users', 'User\UserController', ['except' => ['index', 'create']]);

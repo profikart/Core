@@ -1,7 +1,7 @@
 {
     "routePrefix": "administration.users",
     "crtNo": true,
-    "buttons": ["excel", "show", "edit", "destroy"],
+    "buttons": ["excel", "show", "create","edit", "destroy"],
     "columns": [
         {
             "label": "",
@@ -20,7 +20,7 @@
             "data": "people.appellative",
             "meta": ["sortable", "searchable"]
         }, {
-            "label": "Phone",
+            "label": "Phone", 
             "name": "phone",
             "data": "people.phone",
             "meta": ["searchable", "sortable"]
