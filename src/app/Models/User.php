@@ -1,6 +1,7 @@
 <?php
 
 namespace LaravelEnso\Core\app\Models;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Notifications\Notifiable;
 use LaravelEnso\People\app\Models\Person;
@@ -17,7 +18,7 @@ use LaravelEnso\Impersonate\app\Traits\Impersonates;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use LaravelEnso\Core\app\Notifications\ResetPasswordNotification;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
-
+use App\Helpers\RedisHelpers;
 class User extends Authenticatable
 {
     use ActionLogs, ActiveState, HasAvatar, Impersonates,
@@ -173,5 +174,33 @@ class User extends Authenticatable
                 ['user_id' => $this->id],
                 ['value' => $preferences]
             );
+    }
+    public function getCsrIdArray(){
+
+        if(!RedisHelpers::hTryGet('user_csr_permissions'.config('database.default'),Auth::user()->csr_id,true))
+        { 
+            $csrIdArray=[];
+            array_push($csrIdArray,Auth::user()->csr_id);
+
+            // $csr = CompanyStructureReference::select('ot_id','o_id')->where('id',Auth::user()->csr_id)->pluck('ot_id,o_id')->toArray();
+            
+            $otId = \App\CompanyStructureReference::select('ot_id')->where('id',Auth::user()->csr_id)->pluck('ot_id')->first();
+            $oId = \App\CompanyStructureReference::select('o_id')->where('id',Auth::user()->csr_id)->pluck('o_id')->toArray();
+            
+            $cs = \App\CompanyStructure::select()->where('id','>=',$otId)->get()->toArray();
+            $isLast = false;
+            foreach($cs as $key => $structur){
+            
+                isset($cs[$key+1]) ? $nextTableName = $cs[$key+1]['table_name'] : $nextTableName = false;
+                $nextTableName ? $csrArray = \DB::table($nextTableName)->select('csr_id')->whereIn('parent_id',$oId)->pluck('csr_id')->toArray() : $isLast = true;
+                $isLast ? null : $oId = \App\CompanyStructureReference::select('o_id')->whereIn('id',$csrArray)->pluck('o_id')->toArray();
+                $isLast ? null : $csrIdArray = array_merge($csrIdArray,$csrArray);
+                
+            }
+            // return array_push($array,Auth::user()->csr_id);
+            return RedisHelpers::hSetAndReturn('user_csr_permissions'.config('database.default'),Auth::user()->csr_id,$csrIdArray,true);
+        }
+        return RedisHelpers::hTryGet('user_csr_permissions'.config('database.default'),Auth::user()->csr_id,true);
+
     }
 }
