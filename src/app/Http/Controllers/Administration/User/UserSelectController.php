@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller;
 use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Select\app\Traits\OptionsBuilder;
 use LaravelEnso\Select\app\Classes\OptionsBuilder as Builder;
-
+use App\Http\Controllers\Auth\CsrPermission;
 use App\CompanyStructure;
 
 class UserSelectController extends Controller
@@ -27,23 +27,23 @@ class UserSelectController extends Controller
     }
 
     public function queryCs(){ 
-        return CompanyStructure::query();
+        return CompanyStructure::query()->where('id','>=',CompanyStructure::toUser());
     }
     public function csOptions(){
+        
         return  new Builder(
-            $this->queryCs(),
-            'id',
-            ['display_name']
-        );
+                $this->queryCs(),
+                'id',
+                ['display_name']
+            );
         
     }
     public function queryCsr(){ 
-        // return \App\Central::query()->select();
-        return \App\CompanyStructureReference::query();
+        
+        return \App\CompanyStructureReference::query()->whereIn('id',CsrPermission::getCsrIdArray());
     }
+
     public function csrOptions(){
-        // dump($this->queryCsr()->get());
-        // dump(json_decode($_GET['pivotParams'],true)['references']['id']);
         return  new Builder( 
             $this->queryCsr(),
             'id',

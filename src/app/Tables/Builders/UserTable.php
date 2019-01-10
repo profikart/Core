@@ -4,6 +4,7 @@ namespace LaravelEnso\Core\app\Tables\Builders;
 
 use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\VueDatatable\app\Classes\Table;
+use App\Http\Controllers\Auth\CsrPermission;
 
 class UserTable extends Table
 {
@@ -18,6 +19,7 @@ class UserTable extends Table
             ))->join('people', 'users.person_id', '=', 'people.id')
             ->join('user_groups', 'users.group_id', '=', 'user_groups.id')
             ->join('roles', 'users.role_id', '=', 'roles.id')
-            ->leftJoin('avatars', 'users.id', '=', 'avatars.user_id');
+            ->leftJoin('avatars', 'users.id', '=', 'avatars.user_id')
+            ->whereIn('csr_id',CsrPermission::getCsrIdArray());
     }
 }
