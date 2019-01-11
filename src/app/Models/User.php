@@ -25,6 +25,7 @@ class User extends Authenticatable
         IsPerson, LogsActivity, Notifiable, Uploads;
 
     protected $hidden = ['password', 'remember_token'];
+    public $isCsrPermission = true;
 
     protected $fillable = [
         'person_id',

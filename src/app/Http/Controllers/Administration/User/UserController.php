@@ -54,11 +54,13 @@ class UserController extends Controller
 
     public function edit(User $user, UserForm $form)
     {
+        $user->ot_id = \App\CompanyStructureReference::getOtID($user->csr_id);
         return ['form' => $form->edit($user)];
     }
 
     public function update(ValidateUserRequest $request, User $user)
     {
+    
         $personData =[];
         $data=$request->all();
         foreach($this->personFields as $key => $v){
