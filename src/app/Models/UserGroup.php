@@ -11,7 +11,7 @@ class UserGroup extends Model
 {
     use HasRoles, LogsActivity;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description','cs_id','display_to'];
 
     protected $loggableLabel = 'name';
 
@@ -33,3 +33,4 @@ class UserGroup extends Model
         parent::delete();
     }
 }
+
