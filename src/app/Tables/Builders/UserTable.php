@@ -15,11 +15,12 @@ class UserTable extends Table
         return User::select(\DB::raw(
                 'users.id, users.id as "dtRowId", avatars.id as avatarId, user_groups.name as userGroup,
                 people.name, people.appellative, people.phone, users.email, roles.name as role,
-                users.is_active, users.created_at'
-            ))->join('people', 'users.person_id', '=', 'people.id')
+                users.is_active, users.created_at , company_structure_references.name as csrName'
+            ))->join('company_structure_references','users.csr_id','=','company_structure_references.id')
+            ->join('people', 'users.person_id', '=', 'people.id')
             ->join('user_groups', 'users.group_id', '=', 'user_groups.id')
             ->join('roles', 'users.role_id', '=', 'roles.id')
             ->leftJoin('avatars', 'users.id', '=', 'avatars.user_id')
             ->whereIn('csr_id',CsrPermission::getCsrIdArray());
     }
-}
+} 
