@@ -49,11 +49,11 @@ class UserForm
     private function setCommonValues($person)
     {
         $this->form
-            ->value('title', $person->title)
+//            ->value('title', $person->title)
             ->value('name', $person->name)
-            ->value('appellative', $person->appellative)
-            ->meta('title', 'tooltip', self::Tooltip)
-            ->meta('name', 'tooltip', self::Tooltip)
-            ->meta('appellative', 'tooltip', self::Tooltip);
+//            ->value('appellative', $person->appellative)
+//            ->meta('title', 'tooltip', self::Tooltip)
+            ->meta('name', 'tooltip', self::Tooltip);
+//            ->meta('appellative', 'tooltip', self::Tooltip);
     }
 }

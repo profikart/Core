@@ -34,7 +34,8 @@ class User extends Authenticatable
         'email',
         'is_active',
         'ot_id',
-        'csr_id', 
+        'csr_id',
+        'report'
     ];
 
     protected $casts = [
