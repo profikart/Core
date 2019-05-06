@@ -11,7 +11,7 @@
       "class": "is-paddingless"
     },
     {
-      "label": "Name",
+      "label": "Name and surname",
       "name": "name",
       "data": "people.name",
       "meta": ["sortable", "searchable"]
@@ -23,7 +23,7 @@
       "meta": ["searchable", "sortable"]
     },
     {
-      "label": "Role",
+      "label": "Powers",
       "name": "role",
       "data": "roles.name",
       "meta": ["searchable", "sortable"]
@@ -41,7 +41,7 @@
       "meta": ["searchable", "sortable"]
     },
     {
-      "label": "Active",
+      "label": "Aktywny",
       "name": "is_active",
       "data": "users.is_active",
       "meta": ["boolean"]
@@ -53,7 +53,7 @@
       "meta": ["boolean"]
     },
     {
-      "label": "Member Since",
+      "label": "Member Created",
       "name": "created_at",
       "data": "users.created_at",
       "meta": ["date"]
