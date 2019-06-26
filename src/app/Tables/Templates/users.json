@@ -1,62 +1,190 @@
 {
-  "routePrefix": "administration.users",
-  "crtNo": true,
-  "buttons": ["excel", "show", "create", "edit", "destroy"],
-  "columns": [
+  "sections": [
     {
-      "label": "",
-      "name": "avatarId",
-      "data": "avatars.avatarId",
-      "meta": ["slot"],
-      "class": "is-paddingless"
-    },
-    {
-      "label": "Name and surname",
-      "name": "name",
-      "data": "people.name",
-      "meta": ["sortable", "searchable"]
-    },
-    {
-      "label": "Email",
-      "name": "email",
-      "data": "users.email",
-      "meta": ["searchable", "sortable"]
-    },
-    {
-      "label": "Powers",
-      "name": "role",
-      "data": "roles.name",
-      "meta": ["searchable", "sortable"]
-    },
-    {
-      "label": "Group",
-      "name": "userGroup",
-      "data": "user_groups.name",
-      "meta": ["searchable", "sortable"]
-    },
-    {
-      "label": "Belongs",
-      "name": "csrName",
-      "data": "company_structure_references.name",
-      "meta": ["searchable", "sortable"]
-    },
-    {
-      "label": "Aktywny",
-      "name": "is_active",
-      "data": "users.is_active",
-      "meta": ["boolean"]
-    },
-    {
-      "label": "Raporty potencjalnych nadużyć",
-      "name": "report",
-      "data": "users.report",
-      "meta": ["boolean"]
-    },
-    {
-      "label": "Member Created",
-      "name": "created_at",
-      "data": "users.created_at",
-      "meta": ["date"]
+      "fields": [
+        {
+          "meta": {
+            "type": "datepicker"
+          },
+          "name": "form_date",
+          "label": "Data wypełnienia formularza",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "datepicker"
+          },
+          "name": "personal_data.birth_date",
+          "label": "Data urodzin",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "select",
+            "options": [
+              {
+                "id": 0,
+                "name": "Kobieta"
+              },
+              {
+                "id": 1,
+                "name": "Mężczyzna"
+              }
+            ]
+          },
+          "name": "sex",
+          "label": "Płeć",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": { "type": "input", "content": "text" },
+          "name": "first_name",
+          "label": "Imię",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": { "type": "input", "content": "text" },
+          "name": "last_name",
+          "label": "Nazwisko",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "input",
+            "content": "text"
+          },
+          "name": "city",
+          "label": "Miejscowość",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "input",
+            "content": "text"
+          },
+          "name": "street",
+          "label": "Ulica",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "input",
+            "content": "text"
+          },
+          "name": "post_code",
+          "label": "Kod pocztowy",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "input",
+            "content": "text"
+          },
+          "name": "phone",
+          "label": "Telefon",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "input",
+            "content": "text"
+          },
+          "name": "email",
+          "label": "E-mail",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "input",
+            "content": "text"
+          },
+          "name": "personal_data.pesel",
+          "label": "PESEL",
+          "value": null,
+          "column": 4
+        },
+        {
+          "meta": {
+            "type": "select",
+            "source": "administration.shops.options"
+          },
+          "name": "shop_id",
+          "label": "Sklep",
+          "value": null,
+          "column": 12
+        },
+
+        {
+          "meta": { "type": "datepicker" },
+          "name": "personal_data.name_date",
+          "label": "Data imienin",
+          "value": null,
+          "column": 4
+        },
+
+        {
+          "meta": { "type": "input", "content": "text" },
+          "name": "personal_data.post",
+          "label": "Poczta",
+          "value": null,
+          "column": 4
+        },
+
+        {
+          "meta": { "rows": 3, "type": "textarea" },
+          "name": "description",
+          "label": "Notka",
+          "value": null,
+          "column": 12
+        },
+        {
+          "meta": { "type": "input", "content": "checkbox" },
+          "name": "approval.marketing",
+          "label": "Marketing",
+          "value": false,
+          "column": 2
+        },
+        {
+          "meta": { "type": "input", "content": "checkbox" },
+          "name": "approval.profiling",
+          "label": "Profilowanie",
+          "value": false,
+          "column": 2
+        },
+        {
+          "meta": { "type": "input", "content": "checkbox" },
+          "name": "approval.marketing_ext",
+          "label": "SMS/Mail",
+          "value": false,
+          "column": 2
+        },
+        {
+          "meta": { "type": "input", "content": "checkbox" },
+          "name": "status",
+          "label": "Aktywny",
+          "value": false,
+          "column": 2
+        },
+        {
+          "meta": { "type": "input", "content": "checkbox" },
+          "name": "is_employee",
+          "label": "Pracownik",
+          "value": false,
+          "column": 2
+        }
+      ],
+      "columns": "custom"
     }
-  ]
+  ],
+  "routePrefix": "administration.customers"
 }
